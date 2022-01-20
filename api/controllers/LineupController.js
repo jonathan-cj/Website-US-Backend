@@ -10,5 +10,14 @@ module.exports = {
     } catch (e) {
       logger.log("error", e);
     }
+  },
+  async fetchGirlsLineup(req, res) {
+    try {
+      const girlsLineup = await services.getGirlsLineup();
+
+      res.status(200).send(girlsLineup);
+    } catch (e) {
+      logger.log("error", e);
+    }
   }
 }

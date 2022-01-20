@@ -18,7 +18,7 @@ module.exports = {
       await doc.loadInfo();
 
       const sheet = doc.sheetsByIndex[0];
-      const rows = await sheet.getRows({ limit: 2 });
+      const rows = await sheet.getRows({});
 
       var ret = [];
       rows.forEach((row) => {
@@ -35,4 +35,33 @@ module.exports = {
       logger.log('error', e);
     }
   },
+  async getGirlsLineup() {
+    try {
+      const doc = new GoogleSpreadsheet(process.env.GOOGLE_SHEET_ID);
+
+      await doc.useServiceAccountAuth({
+        client_email: process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL,
+        private_key: process.env.GOOGLE_PRIVATE_KEY
+      });
+
+      await doc.loadInfo();
+
+      const sheet = doc.sheetsByIndex[1];
+      const rows = await sheet.getRows({});
+
+      var ret = [];
+      rows.forEach((row) => {
+        ret.push({
+          nama: row.Nama,
+          gambar: row.Gambar ? getDriveImgLink(row.Gambar.split('/')[5]) : null,
+          nomor: row.Nomor,
+          posisi: row.Posisi,
+        });
+      });
+
+      return ret;
+    } catch (e) {
+      logger.log('error', e);
+    }
+  }
 };
