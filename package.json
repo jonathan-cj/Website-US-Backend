@@ -1,0 +1,23 @@
+{
+  "name": "website-us-be",
+  "version": "1.0.0",
+  "description": "Website US Backend",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Tim magang US",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^12.0.3",
+    "express": "^4.17.2",
+    "google-spreadsheet": "^3.2.0",
+    "morgan": "^1.10.0",
+    "process": "^0.11.10",
+    "stoppable": "^1.1.0",
+    "winston": "^3.4.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
